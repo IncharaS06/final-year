@@ -17,11 +17,8 @@ export default function StatCard({
     trend?: 'up' | 'down' | 'neutral';
     trendValue?: string;
 }) {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
+   // ✅ Fixed - initialize as true directly, no effect needed
+const [isVisible, setIsVisible] = useState(true);
 
     const trendColors = {
         up: 'text-green-600 bg-green-50',
