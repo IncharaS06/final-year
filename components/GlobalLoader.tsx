@@ -6,21 +6,21 @@ import Image from "next/image";
 export default function GlobalLoader() {
 
     const loadingMessages = [
-        "Initializing MEDORA...",
-        "Calibrating precision...",
-        "Analyzing radiology data...",
-        "Loading diagnostic tools...",
-        "Preparing your dashboard...",
-        "Connecting to secure network...",
-        "Almost there...",
-        "Ready to assist...",
+        "Initializing MEDORA AI...",
+        "Loading fracture detection model...",
+        "Analyzing pediatric wrist scans...",
+        "Preparing GradCAM visualizations...",
+        "Optimizing YOLO detections...",
+        "Securing medical pipeline...",
+        "Generating diagnostic workspace...",
+        "Ready for intelligent analysis...",
     ];
 
     const [messageIndex, setMessageIndex] = useState(0);
 
     useEffect(() => {
 
-        const messageInterval = setInterval(() => {
+        const interval = setInterval(() => {
 
             setMessageIndex((prev) =>
                 (prev + 1) % loadingMessages.length
@@ -28,149 +28,244 @@ export default function GlobalLoader() {
 
         }, 2200);
 
-        return () => clearInterval(messageInterval);
+        return () => clearInterval(interval);
 
-    }, [loadingMessages.length]);
+    }, []);
 
     return (
-        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#F8F7FF] overflow-hidden">
 
-            {/* Animated Background */}
-            <div className="absolute inset-0 overflow-hidden">
+        <div className="fixed inset-0 z-[9999] overflow-hidden bg-[#F7F8FC] flex items-center justify-center">
 
-                <div className="absolute inset-0 bg-gradient-to-br from-[#F8F7FF] via-white to-[#F1EEFF]" />
+            {/* BACKGROUND */}
+            <div className="absolute inset-0">
 
-                <div className="absolute top-20 left-10 w-64 h-64 bg-[#7C6EE6]/5 rounded-full blur-3xl animate-float-slow" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#F7F8FC] via-white to-[#EEF2FF]" />
 
-                <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#FFB7C5]/5 rounded-full blur-3xl animate-float-slower" />
+                {/* floating blur */}
+                <div className="absolute top-[-100px] left-[-100px] w-[350px] h-[350px] bg-[#6D5EF3]/10 rounded-full blur-3xl animate-floatOne" />
 
-                <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-[#C8C3FF]/10 rounded-full blur-3xl animate-pulse-slow" />
+                <div className="absolute bottom-[-120px] right-[-100px] w-[400px] h-[400px] bg-[#8B5CF6]/10 rounded-full blur-3xl animate-floatTwo" />
 
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#7C6EE6]/10 rounded-full animate-spin-slow" />
+                <div className="absolute top-[40%] left-[45%] w-[250px] h-[250px] bg-[#C4B5FD]/20 rounded-full blur-3xl animate-pulse" />
 
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#FFB7C5]/10 rounded-full animate-spin-slower" />
+                {/* circles */}
+                <div className="absolute inset-0 flex items-center justify-center">
+
+                    <div className="absolute w-[650px] h-[650px] rounded-full border border-[#6D5EF3]/10 animate-spinSlow" />
+
+                    <div className="absolute w-[500px] h-[500px] rounded-full border border-[#8B5CF6]/10 animate-spinReverse" />
+
+                    <div className="absolute w-[350px] h-[350px] rounded-full border border-[#C4B5FD]/20 animate-spinSlow2" />
+
+                </div>
 
             </div>
 
-            {/* Loader Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-sm px-6">
+            {/* MAIN CONTENT */}
+            <div className="relative z-10 flex flex-col items-center">
 
-                {/* Logo */}
-                <div className="relative mb-8">
+                {/* LOGO AREA */}
+                <div className="relative mb-10">
 
-                    <div className="absolute inset-0 bg-[#7C6EE6]/20 rounded-full blur-3xl animate-pulse-gentle" />
+                    {/* glowing bg */}
+                    <div className="absolute inset-0 bg-[#6D5EF3]/20 blur-[80px] rounded-full animate-pulse" />
 
-                    <div
-                        className="absolute -inset-3 rounded-full border-2 border-[#C8C3FF]/40 animate-spin-slow border-t-[#7C6EE6] border-l-transparent"
-                        style={{ animationDuration: "4s" }}
-                    />
+                    {/* spinning ring */}
+                    <div className="absolute -inset-6 rounded-full border-2 border-[#6D5EF3]/30 border-t-[#6D5EF3] border-r-transparent animate-spinSlow" />
 
-                    <div
-                        className="absolute -inset-6 rounded-full border border-[#FFB7C5]/30 animate-spin-slower border-b-[#7C6EE6] border-r-transparent"
-                        style={{ animationDuration: "6s" }}
-                    />
+                    <div className="absolute -inset-12 rounded-full border border-[#A78BFA]/20 border-b-[#6D5EF3] border-l-transparent animate-spinReverse" />
 
-                    <div className="relative w-32 h-32 animate-float-subtle">
+                    {/* image */}
+                    <div className="relative w-40 h-40 animate-floatLogo">
 
                         <Image
                             src="/loader.gif"
-                            alt="MEDORA Loader"
+                            alt="MEDORA AI"
                             fill
                             priority
-                            className="object-contain drop-shadow-2xl"
+                            className="object-contain drop-shadow-[0_20px_40px_rgba(109,94,243,0.35)]"
                         />
 
                     </div>
 
                 </div>
 
-                {/* Message */}
-                <p className="text-lg sm:text-xl text-[#2E2E3A] font-light tracking-wide animate-fade-in-up text-center">
-                    {loadingMessages[messageIndex]}
-                </p>
+                {/* TITLE */}
+                <div className="text-center mb-6">
 
-            </div>
+                    <h1 className="text-5xl font-extrabold tracking-tight bg-gradient-to-r from-[#6D5EF3] to-[#8B5CF6] bg-clip-text text-transparent">
+                        MEDORA AI
+                    </h1>
 
-            {/* Bottom motif */}
-            <div className="absolute bottom-8 flex flex-col items-center gap-3">
-
-                <div className="relative w-40 h-8 overflow-hidden">
-
-                    <svg className="w-full h-full" viewBox="0 0 120 20">
-
-                        <path
-                            d="M0,10 L20,10 L30,2 L40,18 L50,2 L60,18 L70,10 L120,10"
-                            stroke="#7C6EE6"
-                            strokeWidth="1.5"
-                            fill="none"
-                            strokeOpacity="0.3"
-                            strokeDasharray="5,5"
-                            className="animate-dash"
-                        />
-
-                    </svg>
+                    <p className="mt-3 text-[#6B7280] text-lg tracking-wide">
+                        Pediatric Wrist Fracture Intelligence
+                    </p>
 
                 </div>
 
-                <p className="text-[10px] text-[#7C6EE6]/20 font-mono tracking-wider">
-                    MEDORA v2.4.0 • RADIOLOGY SUITE
-                </p>
+                {/* MESSAGE */}
+                <div className="h-[40px] flex items-center justify-center">
+
+                    <p className="text-[#374151] text-lg font-medium tracking-wide animate-fadeIn">
+                        {loadingMessages[messageIndex]}
+                    </p>
+
+                </div>
+
+                {/* LOADING BAR */}
+                <div className="mt-8 w-[320px] h-[8px] bg-[#E5E7EB] rounded-full overflow-hidden shadow-inner">
+
+                    <div className="h-full rounded-full bg-gradient-to-r from-[#6D5EF3] via-[#8B5CF6] to-[#A78BFA] animate-loaderBar" />
+
+                </div>
+
+                {/* DOTS */}
+                <div className="flex items-center gap-3 mt-8">
+
+                    <span className="w-3 h-3 rounded-full bg-[#6D5EF3] animate-bounceDot1" />
+
+                    <span className="w-3 h-3 rounded-full bg-[#8B5CF6] animate-bounceDot2" />
+
+                    <span className="w-3 h-3 rounded-full bg-[#A78BFA] animate-bounceDot3" />
+
+                </div>
+
+                {/* VERSION */}
+                <div className="mt-12 text-center">
+
+                    <p className="text-[11px] tracking-[4px] text-[#9CA3AF] uppercase">
+                        MEDORA RADIOLOGY SUITE v2.4
+                    </p>
+
+                </div>
 
             </div>
 
             <style jsx>{`
-                @keyframes dash {
+
+                @keyframes spinSlow {
+                    from {
+                        transform: rotate(0deg);
+                    }
                     to {
-                        stroke-dashoffset: -20;
+                        transform: rotate(360deg);
                     }
                 }
 
-                .animate-dash {
-                    stroke-dashoffset: 0;
-                    animation: dash 20s linear infinite;
+                @keyframes spinReverse {
+                    from {
+                        transform: rotate(360deg);
+                    }
+                    to {
+                        transform: rotate(0deg);
+                    }
                 }
 
-                @keyframes float-slow {
+                @keyframes floatOne {
                     0%,100% {
-                        transform: translate(0,0);
+                        transform: translate(0px,0px);
                     }
-
                     50% {
-                        transform: translate(15px,-15px);
+                        transform: translate(40px,20px);
                     }
                 }
 
-                @keyframes float-slower {
+                @keyframes floatTwo {
                     0%,100% {
-                        transform: translate(0,0);
+                        transform: translate(0px,0px);
                     }
-
                     50% {
-                        transform: translate(-20px,20px);
+                        transform: translate(-40px,-20px);
                     }
                 }
 
-                @keyframes float-subtle {
+                @keyframes floatLogo {
                     0%,100% {
-                        transform: translateY(0);
+                        transform: translateY(0px);
                     }
-
                     50% {
-                        transform: translateY(-5px);
+                        transform: translateY(-12px);
                     }
                 }
 
-                .animate-float-slow {
-                    animation: float-slow 12s ease-in-out infinite;
+                @keyframes loaderBar {
+                    0% {
+                        width: 0%;
+                    }
+                    50% {
+                        width: 75%;
+                    }
+                    100% {
+                        width: 100%;
+                    }
                 }
 
-                .animate-float-slower {
-                    animation: float-slower 15s ease-in-out infinite;
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0px);
+                    }
                 }
 
-                .animate-float-subtle {
-                    animation: float-subtle 3s ease-in-out infinite;
+                @keyframes bounceDot {
+                    0%,100% {
+                        transform: translateY(0px);
+                        opacity: 0.5;
+                    }
+                    50% {
+                        transform: translateY(-10px);
+                        opacity: 1;
+                    }
                 }
+
+                .animate-spinSlow {
+                    animation: spinSlow 10s linear infinite;
+                }
+
+                .animate-spinReverse {
+                    animation: spinReverse 14s linear infinite;
+                }
+
+                .animate-spinSlow2 {
+                    animation: spinSlow 18s linear infinite;
+                }
+
+                .animate-floatOne {
+                    animation: floatOne 12s ease-in-out infinite;
+                }
+
+                .animate-floatTwo {
+                    animation: floatTwo 14s ease-in-out infinite;
+                }
+
+                .animate-floatLogo {
+                    animation: floatLogo 4s ease-in-out infinite;
+                }
+
+                .animate-loaderBar {
+                    animation: loaderBar 3s ease-in-out infinite;
+                }
+
+                .animate-fadeIn {
+                    animation: fadeIn 0.6s ease;
+                }
+
+                .animate-bounceDot1 {
+                    animation: bounceDot 1s infinite;
+                }
+
+                .animate-bounceDot2 {
+                    animation: bounceDot 1s infinite 0.2s;
+                }
+
+                .animate-bounceDot3 {
+                    animation: bounceDot 1s infinite 0.4s;
+                }
+
             `}</style>
 
         </div>
