@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import Image from "next/image";
+
 import { useRouter } from "next/navigation";
 
 import { auth, db } from "@/lib/firebase";
@@ -14,7 +16,10 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-import { callHuggingFaceModel } from "@/lib/huggingface";
+import {
+  callHuggingFaceModel,
+  ModelResult,
+} from "@/lib/huggingface";
 
 export default function UploadPage() {
 
@@ -163,15 +168,15 @@ export default function UploadPage() {
         "calling-model"
       );
 
-      // 1️⃣ CALL MODEL
-      const modelResult =
+      // CALL MODEL
+      const modelResult: ModelResult =
         await callHuggingFaceModel(
           preview
         );
 
       setProgress(65);
 
-      // 2️⃣ SAVE TO FIRESTORE
+      // SAVE TO FIRESTORE
       setStatus("saving");
 
       await addDoc(
@@ -198,6 +203,10 @@ export default function UploadPage() {
 
           fractureProbability:
             modelResult.fractureProbability ||
+            0,
+
+          normalProbability:
+            modelResult.normalProbability ||
             0,
 
           riskLevel:
@@ -236,12 +245,10 @@ export default function UploadPage() {
         }
       );
 
-      // 3️⃣ DONE
       setProgress(100);
 
       setStatus("done");
 
-      // 4️⃣ REDIRECT
       setTimeout(() => {
 
         router.push("/results");
@@ -292,7 +299,7 @@ export default function UploadPage() {
 
       <div className="w-full max-w-xl bg-white rounded-[28px] shadow-[var(--shadow-card)] p-6 sm:p-10 flex flex-col gap-6">
 
-        {/* Header */}
+        {/* HEADER */}
         <div>
 
           <div className="flex items-center gap-3 mb-2">
@@ -319,7 +326,7 @@ export default function UploadPage() {
 
         </div>
 
-        {/* Patient Name */}
+        {/* PATIENT NAME */}
         <div className="flex flex-col gap-1">
 
           <label className="text-sm font-medium text-[var(--foreground)]">
@@ -347,7 +354,7 @@ export default function UploadPage() {
 
         </div>
 
-        {/* Upload Box */}
+        {/* UPLOAD BOX */}
         <div
           onDragOver={(e) =>
             e.preventDefault()
@@ -426,7 +433,7 @@ export default function UploadPage() {
 
         </div>
 
-        {/* Remove */}
+        {/* REMOVE IMAGE */}
         {preview && !isLoading && (
 
           <button
@@ -446,7 +453,7 @@ export default function UploadPage() {
           </button>
         )}
 
-        {/* Progress */}
+        {/* PROGRESS */}
         {isLoading && (
 
           <div className="flex flex-col gap-2">
@@ -455,7 +462,7 @@ export default function UploadPage() {
 
               {status === "calling-model"
                 ? "🔬 Running AI fracture detection…"
-                : "💾 Saving results to database…"}
+                : "💾 Saving results to database..."}
 
             </p>
 
@@ -473,7 +480,7 @@ export default function UploadPage() {
           </div>
         )}
 
-        {/* Error */}
+        {/* ERROR */}
         {error && (
 
           <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700 leading-relaxed">
@@ -483,7 +490,7 @@ export default function UploadPage() {
           </div>
         )}
 
-        {/* Analyze Button */}
+        {/* ANALYZE BUTTON */}
         <button
           onClick={analyzeImage}
           disabled={!file || isLoading}
@@ -496,7 +503,7 @@ export default function UploadPage() {
 
         </button>
 
-        {/* Footer */}
+        {/* FOOTER */}
         <div className="flex justify-between text-sm text-[var(--text-soft)]">
 
           <button
